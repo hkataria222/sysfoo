@@ -1,26 +1,30 @@
 pipeline {
-    agent any
-    tools {
-        maven 'Maven 3.6.3' 
+  agent any
+  stages {
+    stage('Build') {
+      steps {
+        echo 'Build'
+        sh 'mvn compile'
+      }
     }
-    stages {
-        stage('Build') {
-            steps { 
-                echo 'Build'
-                sh 'mvn compile'
-            }
-        }
-       stage('Test') {
-            steps { 
-                 echo 'test'
-                sh 'mvn clean test'
-            }
-        }
-      stage('package') {
-            steps { 
-                 echo 'package'
-                sh 'mvn package -DskipTests'
-            }
-        }
+
+    stage('Test') {
+      steps {
+        echo 'test'
+        sh 'mvn clean test'
+      }
     }
+
+    stage('package') {
+      steps {
+        echo 'package'
+        sh 'mvn package -DskipTests'
+        archiveArtifacts(artifacts: '**/target/*.war', onlyIfSuccessful: true)
+      }
+    }
+
+  }
+  tools {
+    maven 'Maven 3.6.3'
+  }
 }
