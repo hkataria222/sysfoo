@@ -9,9 +9,20 @@ pipeline {
     }
 
     stage('Test') {
-      steps {
-        echo 'test'
-        sh 'mvn clean test'
+      parallel {
+        stage('Test') {
+          steps {
+            echo 'test'
+            sh 'mvn clean test'
+          }
+        }
+
+        stage('') {
+          steps {
+            echo 'parallel stage'
+          }
+        }
+
       }
     }
 
