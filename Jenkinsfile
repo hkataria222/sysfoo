@@ -6,19 +6,19 @@ pipeline {
     stages {
         stage('Build') {
             steps { 
-                echo 'Build',
+                echo 'Build'
                 sh 'mvn compile'
             }
         }
        stage('Test') {
             steps { 
-                 echo 'test',
+                 echo 'test'
                 sh 'mvn clean test'
             }
         }
       stage('package') {
             steps { 
-                 echo 'package',
+                 echo 'package'
                 sh 'mvn package -DskipTests'
             }
         }
