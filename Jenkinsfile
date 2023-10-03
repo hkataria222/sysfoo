@@ -17,9 +17,15 @@ pipeline {
           }
         }
 
-        stage('') {
+        stage('error') {
           steps {
             echo 'parallel stage'
+          }
+        }
+
+        stage('stage3') {
+          steps {
+            echo 'New parallel step'
           }
         }
 
