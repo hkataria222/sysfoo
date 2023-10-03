@@ -10,7 +10,7 @@ pipeline {
 
     stage('Test') {
       parallel {
-        stage('Test') {
+        stage('Test2') {
           steps {
             echo 'test'
             sh 'mvn clean test'
